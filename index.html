@@ -23,10 +23,10 @@
 			 </div>
 			 <div class="user-right">
 			 		<div class="user-name" contenteditable="true">
-						北_
+						小熊_
 					</div>	
 					<div class="pyq-text" contenteditable="true">
-						1
+						输入文字
 					</div>
 					<div class="pyq-img-box" id="imgSrc">
 						<input type="file" accept="image/*" id="upload"  />
@@ -71,7 +71,7 @@
 						 <div class="msg-text-box">
 							 <div class="msg-list-main">
 								 <div class="msg-name-date">
-									 <div class="msg-name" contenteditable="true">月</div>
+									 <div class="msg-name" contenteditable="true">芒果</div>
 									 <div class="msg-date">18:15</div>
 								 </div>
 								 <div class="msg-text" contenteditable="true">前排</div>
@@ -83,7 +83,7 @@
 						 <div class="msg-text-box">
 							 <div class="msg-list-main">
 								 <div class="msg-name-date">
-									 <div class="msg-name" contenteditable="true">月</div>
+									 <div class="msg-name" contenteditable="true">芒果</div>
 									 <div class="msg-date">18:15</div>
 								 </div>
 								 <div class="msg-text" contenteditable="true">前排</div>
@@ -96,7 +96,7 @@
 						 <div class="msg-text-box">
 							 <div class="msg-list-main">
 								 <div class="msg-name-date">
-									 <div class="msg-name" contenteditable="true">月</div>
+									 <div class="msg-name" contenteditable="true">芒果</div>
 									 <div class="msg-date">18:15</div>
 								 </div>
 								 <div class="msg-text" contenteditable="true">前排</div>
@@ -109,7 +109,7 @@
 						 <div class="msg-text-box">
 							 <div class="msg-list-main">
 								 <div class="msg-name-date">
-									 <div class="msg-name" contenteditable="true">月</div>
+									 <div class="msg-name" contenteditable="true">芒果</div>
 									 <div class="msg-date">18:15</div>
 								 </div>
 								 <div class="msg-text" contenteditable="true">前排</div>
@@ -122,7 +122,7 @@
 						 <div class="msg-text-box">
 							 <div class="msg-list-main">
 								 <div class="msg-name-date">
-									 <div class="msg-name" contenteditable="true">月</div>
+									 <div class="msg-name" contenteditable="true">芒果</div>
 									 <div class="msg-date">18:15</div>
 								 </div>
 								 <div class="msg-text" contenteditable="true">前排</div>
@@ -136,7 +136,7 @@
 						 <div class="msg-text-box">
 							 <div class="msg-list-main">
 								 <div class="msg-name-date">
-									 <div class="msg-name" contenteditable="true">月</div>
+									 <div class="msg-name" contenteditable="true">芒果</div>
 									 <div class="msg-date">18:15</div>
 								 </div>
 								 <div class="msg-text" contenteditable="true">前排</div>
@@ -259,182 +259,128 @@
 				});
 				
 				//随机生成多少个不重复数字，，手动修改 //随机生成多少个不重复数字，，手动修改 //随机生成多少个不重复数字，
-				var count = 766;   //随机生成多少个不重复数字，，手动修改   
-				var a = new Array();
-				for(var i = 0; i < count; i++){
-				    a[i] = i+1;
+				var touxiangNumber = 766;   //随机生成多少个不重复数字，，手动修改   
+				var touxiangNumberArr = []; 
+				for(let i=0;i<touxiangNumber;i++){
+					touxiangNumberArr.push(i)
 				}
-				a.sort(function(){
-				    return 0.5 - Math.random()
-				});
-				console.log(`随机生成${count}个不重复数字是：${a}`)  //
 				
-				
-				var f = 0;
-				$(".console-text-sure").click(function(){	
+				function shuffle(arr){  //数组随机打乱算法
+				    var l = arr.length
+				    var index, temp
+				    while(l>0){
+				        index = Math.floor(Math.random()*l)
+				        temp = arr[l-1]
+				        arr[l-1] = arr[index]
+				        arr[index] = temp
+				        l--
+				    }
+				    return arr
+				}
+				$(".console-text-sure").click(function(){
+					let shuffleTouxiangNumberArr =  shuffle(touxiangNumberArr);//组随机打乱
+					console.log("随机打乱的点赞数组：")
+					console.log(shuffleTouxiangNumberArr)
+					$(".zan-ul").empty();
+					let number = $(".console-text").val();
+					console.log("需要的点赞数量为:");
+					let shuffleTouxiangNumberArrShow = shuffleTouxiangNumberArr.slice(0,number);
+					console.log(shuffleTouxiangNumberArrShow);
+					for(let k=0;k<shuffleTouxiangNumberArrShow.length;k++){
+					    let imgUrl = shuffleTouxiangNumberArrShow[k];  //图片路径，手动修改
+					    let html = `<li class="zan-list" 
+					    style="background:url(img-touxiang/${imgUrl}.jpg);
+					    background-repeat: no-repeat; 
+					    background-size: cover; 
+					    background-position: center;
+					    "></li>`;
+					    $(".zan-ul").append(html)
+					};
 					
-					var showNum = $(".console-text").val();  //显示多少个头像
-					var s = f;
-					var e = f + Number(showNum);
-					console.log(s,e)
-					
-					var showArr = a.slice(s, e);
-					console.log("即将显示的"+showNum+"张图片数组：",showArr);
-					f = e;
-					
-					
-					//生成头像
-					for(let k=0;k<showArr.length;k++){	
-						let imgUrl = showArr[k];  //图片路径，手动修改  
-						let html = `<li class="zan-list" 
-						style="background:url(img-touxiang/${imgUrl}.jpg);
-						background-repeat: no-repeat; 
-						background-size: cover; 
-						background-position: center;
-						"></li>`;
-						$(".zan-ul").append(html)
-					}
-					
-					
-					//点赞头像随机打乱    
-					var showArrSj = arrSort(showArr);
-					console.log("留言的头像打乱",showArrSj);
-					
-
-					let randomFlag = 0.5;
-					
-					if(Math.random()>randomFlag){
-						$("#msg1").css({
-							"background":"url(img-touxiang/"+showArrSj[0]+".jpg)",
-							"background-repeat":"no-repea",
-							"background-size": "cover",
-							"background-position": "center"
-						})
-					}else{
-						$("#msg1").css({
-							"background":"url(img-touxiang/"+a[count-1]+".jpg)",
-							"background-repeat":"no-repea",
-							"background-size": "cover",
-							"background-position": "center"
-						})
-					}
-					
-					
-					if(Math.random()>randomFlag){
-						$("#msg2").css({
-							"background":"url(img-touxiang/"+showArrSj[1]+".jpg)",
-							"background-repeat":"no-repea",
-							"background-size": "cover",
-							"background-position": "center"
-						})
-					}else{
-						$("#msg2").css({
-							"background":"url(img-touxiang/"+a[count-2]+".jpg)",
-							"background-repeat":"no-repea",
-							"background-size": "cover",
-							"background-position": "center"
-						})
-					}
-					
-					
-					if(Math.random()>randomFlag){
-						$("#msg3").css({
-							"background":"url(img-touxiang/"+showArrSj[2]+".jpg)",
-							"background-repeat":"no-repea",
-							"background-size": "cover",
-							"background-position": "center"
-						})
-					}else{
-						$("#msg3").css({
-							"background":"url(img-touxiang/"+a[count-3]+".jpg)",
-							"background-repeat":"no-repea",
-							"background-size": "cover",
-							"background-position": "center"
-						})
-					}
-					
-					
-					if(Math.random()>randomFlag){
-						$("#msg4").css({
-							"background":"url(img-touxiang/"+showArrSj[3]+".jpg)",
-							"background-repeat":"no-repea",
-							"background-size": "cover",
-							"background-position": "center"
-						})
-					}else{
-						$("#msg4").css({
-							"background":"url(img-touxiang/"+a[count-4]+".jpg)",
-							"background-repeat":"no-repea",
-							"background-size": "cover",
-							"background-position": "center"
-						})
-					}
-					
-					
-					if(Math.random()>randomFlag){
-						$("#msg5").css({
-							"background":"url(img-touxiang/"+showArrSj[4]+".jpg)",
-							"background-repeat":"no-repea",
-							"background-size": "cover",
-							"background-position": "center"
-						})
-					}else{
-						$("#msg5").css({
-							"background":"url(img-touxiang/"+a[count-5]+".jpg)",
-							"background-repeat":"no-repea",
-							"background-size": "cover",
-							"background-position": "center"
-						})
-					}
-					
-					
-					if(Math.random()>randomFlag){
-						$("#msg6").css({
-							"background":"url(img-touxiang/"+showArrSj[5]+".jpg)",
-							"background-repeat":"no-repea",
-							"background-size": "cover",
-							"background-position": "center"
-						})
-					}else{
-						$("#msg6").css({
-							"background":"url(img-touxiang/"+a[count-6]+".jpg)",
-							"background-repeat":"no-repea",
-							"background-size": "cover",
-							"background-position": "center"
-						})
-					}
-					
-					
-					if(Math.random()>randomFlag){
-						$("#msg7").css({
-							"background":"url(img-touxiang/"+showArrSj[6]+".jpg)",
-							"background-repeat":"no-repea",
-							"background-size": "cover",
-							"background-position": "center"
-						})
-					}else{
-						$("#msg7").css({
-							"background":"url(img-touxiang/"+a[count-7]+".jpg)",
-							"background-repeat":"no-repea",
-							"background-size": "cover",
-							"background-position": "center"
-						})
-					}
-					
-					
-					function arrSort(arr){
-						arr.sort(function(){
-							 return Math.random()-0.5;
-						});	
-					    return arr;
-					}
-					
+				    let shuffleTouxiangNumberArr2 = shuffle(touxiangNumberArr); //数组再打乱一次，展示点赞头像
+					console.log("随机打乱的留言数组：")
+				    console.log(shuffleTouxiangNumberArr2);
+					$("#msg1").css({
+						"background":"url(img-touxiang/"+shuffleTouxiangNumberArr2[0]+".jpg)",
+						"background-repeat":"no-repea",
+						"background-size": "cover",
+						"background-position": "center"
+					})
+					$("#msg2").css({
+						"background":"url(img-touxiang/"+shuffleTouxiangNumberArr2[1]+".jpg)",
+						"background-repeat":"no-repea",
+						"background-size": "cover",
+						"background-position": "center"
+					})
+					$("#msg3").css({
+						"background":"url(img-touxiang/"+shuffleTouxiangNumberArr2[2]+".jpg)",
+						"background-repeat":"no-repea",
+						"background-size": "cover",
+						"background-position": "center"
+					})
+					$("#msg4").css({
+						"background":"url(img-touxiang/"+shuffleTouxiangNumberArr2[3]+".jpg)",
+						"background-repeat":"no-repea",
+						"background-size": "cover",
+						"background-position": "center"
+					})
+					$("#msg5").css({
+						"background":"url(img-touxiang/"+shuffleTouxiangNumberArr2[4]+".jpg)",
+						"background-repeat":"no-repea",
+						"background-size": "cover",
+						"background-position": "center"
+					})
+					$("#msg6").css({
+						"background":"url(img-touxiang/"+shuffleTouxiangNumberArr2[5]+".jpg)",
+						"background-repeat":"no-repea",
+						"background-size": "cover",
+						"background-position": "center"
+					})
 				})
+				
 				
 				//显示隐藏图片
 				$("#hide-img").click(function(){
 					$(".pyq-img-box").fadeToggle()
 				})
-
+				//点击文本本文，方便
+				$(".pyq-text").click(function(){
+					let text =$(this).text().trim()
+					if(text=="输入文字"){
+						$(this).text("")
+					}
+				}).focusout(function(){
+					console.log("本文失去焦点");
+					let text = $(this).text().trim()
+					if(text==""){
+						$(this).text("输入文字")
+					}
+				})	
+				
+				$(".msg-name").click(function(){
+					let text =$(this).text().trim()
+					if(text=="芒果"){
+						$(this).text("")
+					}
+				}).focusout(function(){
+					console.log("本文失去焦点");
+					let text = $(this).text().trim()
+					if(text==""){
+						$(this).text("芒果")
+					}
+				})
+				
+				$(".msg-text").click(function(){
+					let text =$(this).text().trim()
+					if(text=="前排"){
+						$(this).text("")
+					}
+				}).focusout(function(){
+					console.log("本文失去焦点");
+					let text = $(this).text().trim()
+					if(text==""){
+						$(this).text("前排")
+					}
+				})
 	</script>
 </html>
