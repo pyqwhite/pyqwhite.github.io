@@ -270,7 +270,7 @@ body{
 	float: left;
 	height: 45px;
 	line-height: 45px;
-	font-size: 18px;
+	font-size: 22px;
 	color: #000;
 }
 .console-text{
@@ -294,6 +294,9 @@ body{
 	border: none;
 	background: #2DA44E;
 	color:#FFF;
+	cursor: pointer;
+	outline:none;
+	user-select: none;
 }
 
 #hide-img{
@@ -306,6 +309,9 @@ body{
 	border-radius: 7px;
 	background: #2DA44E;
 	color:#FFF;
+	cursor: pointer;
+	outline:none;
+	user-select: none;
 }
 .hide-img{
 	margin-bottom: 13px;
